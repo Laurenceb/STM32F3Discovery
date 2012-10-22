@@ -62,7 +62,7 @@ __IO uint32_t USBConnectTimeOut = 100;
 uint8_t *Mouse_Buffer;
 
 float fNormAcc,fSinRoll,fCosRoll,fSinPitch,fCosPitch = 0.0f, RollAng = 0.0f, PitchAng = 0.0f;
-float fTiltedX,fTiltedY = 0.0f;
+float fTiltedX,fTiltedY = 0.0f, Dot_Norm;
 /* Private function prototypes -----------------------------------------------*/
 static uint8_t *USBD_HID_GetPos (float Heading, float Pitch);
 /* Private functions ---------------------------------------------------------*/
@@ -251,6 +251,8 @@ int main(void)
       fCosRoll = sqrt(1.0-(fSinRoll * fSinRoll));
       fSinPitch = AccBuffer[0]/fNormAcc;
       fCosPitch = sqrt(1.0-(fSinPitch * fSinPitch));
+
+      Dot_Norm = ((AccBuffer[0]*MagBuffer[0])+(AccBuffer[1]*MagBuffer[1])+(AccBuffer[2]*MagBuffer[2]))/(fNormAcc*fNormAcc);
      if ( fSinRoll >0)
      {
        if (fCosRoll>0)
@@ -307,8 +309,10 @@ int main(void)
         PitchAng = PitchAng - 360;
       }
       
-      fTiltedX = MagBuffer[0]*fCosPitch+MagBuffer[2]*fSinPitch;
-      fTiltedY = MagBuffer[0]*fSinRoll*fSinPitch+MagBuffer[1]*fCosRoll-MagBuffer[1]*fSinRoll*fCosPitch;
+      //fTiltedX = MagBuffer[0]*fCosPitch+MagBuffer[2]*fSinPitch;
+      //fTiltedY = MagBuffer[0]*fSinRoll*fSinPitch+MagBuffer[1]*fCosRoll-MagBuffer[1]*fSinRoll*fCosPitch;
+      fTiltedX = MagBuffer[0] - AccBuffer[0] * (Dot_Norm);
+      fTiltedY = MagBuffer[1] - AccBuffer[1] * (Dot_Norm);
       
       HeadingValue = (float) ((atan2f((float)fTiltedY,(float)fTiltedX))*180)/PI;
  
@@ -318,7 +322,7 @@ int main(void)
       }
 
       /* Get position */
-      Mouse_Buffer = USBD_HID_GetPos( HeadingValue, PitchAng);
+      Mouse_Buffer = USBD_HID_GetPos( HeadingValue-128, PitchAng-128);
       /* Update the cursor position */
       if((Mouse_Buffer[1] != 0) ||(Mouse_Buffer[2] != 0))
       {
@@ -490,13 +494,13 @@ static uint8_t *USBD_HID_GetPos (float Heading, float Pitch)
   /* LEFT Direction */
   if(((int8_t)Delta_Heading) > 10)
   {
-    HID_Buffer[1] += CURSOR_STEP;
+    HID_Buffer[1] += (Delta_Heading-10)/CURSOR_STEP;
     //Old_Heading -= 5;
   }
   /* RIGHT Direction */ 
   if(((int8_t)Delta_Heading) < -10)
   {
-   HID_Buffer[1] -= CURSOR_STEP;
+   HID_Buffer[1] -= (Delta_Heading+10)/CURSOR_STEP;
    //Old_Heading += 5;
   } 
  /* if(Old_Heading>128)
@@ -507,12 +511,12 @@ static uint8_t *USBD_HID_GetPos (float Heading, float Pitch)
   /* UP Direction */
   if(((int8_t)Delta_Pitch) < -10)
   {
-    HID_Buffer[2] += CURSOR_STEP;
+    HID_Buffer[2] += (Delta_Pitch+10)/CURSOR_STEP;
   }
   /* DOWN Direction */ 
   if(((int8_t)Delta_Pitch) > 10)
   {
-    HID_Buffer[2] -= CURSOR_STEP;
+    HID_Buffer[2] -= (Delta_Pitch-10)/CURSOR_STEP;
   } 
   
   return HID_Buffer;
