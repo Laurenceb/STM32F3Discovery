@@ -500,7 +500,7 @@ static uint8_t *USBD_HID_GetPos (float Heading, float Pitch)
   /* RIGHT Direction */ 
   if(((int8_t)Delta_Heading) < -10)
   {
-   HID_Buffer[1] -= (Delta_Heading+10)/CURSOR_STEP;
+   HID_Buffer[1] += (Delta_Heading+10)/CURSOR_STEP;
    //Old_Heading += 5;
   } 
  /* if(Old_Heading>128)
@@ -511,7 +511,7 @@ static uint8_t *USBD_HID_GetPos (float Heading, float Pitch)
   /* UP Direction */
   if(((int8_t)Delta_Pitch) < -10)
   {
-    HID_Buffer[2] += (Delta_Pitch+10)/CURSOR_STEP;
+    HID_Buffer[2] -= (Delta_Pitch+10)/CURSOR_STEP;
   }
   /* DOWN Direction */ 
   if(((int8_t)Delta_Pitch) > 10)

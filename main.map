@@ -1520,7 +1520,7 @@ LOAD /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/
                 0x08000000                g_pfnVectors
                 0x08000188                . = ALIGN (0x4)
 
-.text           0x08000188     0x52d8
+.text           0x08000188     0x52c8
                 0x08000188                . = ALIGN (0x4)
  *(.text)
  .text          0x08000188       0x30 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtbegin.o
@@ -1977,285 +1977,285 @@ LOAD /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/
  .text.Demo_CompassReadMag
                 0x080038a0      0x150 src/main.o
                 0x080038a0                Demo_CompassReadMag
- .text.main     0x080039f0      0xa30 src/main.o
+ .text.main     0x080039f0      0xa20 src/main.o
                 0x080039f0                main
  .text.TimingDelay_Decrement
-                0x08004420       0x14 src/main.o
-                0x08004420                TimingDelay_Decrement
+                0x08004410       0x14 src/main.o
+                0x08004410                TimingDelay_Decrement
  .text.LSM303DLHC_TIMEOUT_UserCallback
-                0x08004434        0x4 src/main.o
-                0x08004434                LSM303DLHC_TIMEOUT_UserCallback
+                0x08004424        0x4 src/main.o
+                0x08004424                LSM303DLHC_TIMEOUT_UserCallback
  .text.L3GD20_TIMEOUT_UserCallback
-                0x08004438        0x4 src/main.o
-                0x08004438                L3GD20_TIMEOUT_UserCallback
+                0x08004428        0x4 src/main.o
+                0x08004428                L3GD20_TIMEOUT_UserCallback
  .text.NMI_Handler
-                0x0800443c        0x2 src/stm32f30x_it.o
-                0x0800443c                NMI_Handler
+                0x0800442c        0x2 src/stm32f30x_it.o
+                0x0800442c                NMI_Handler
  .text.HardFault_Handler
-                0x0800443e        0x2 src/stm32f30x_it.o
-                0x0800443e                HardFault_Handler
+                0x0800442e        0x2 src/stm32f30x_it.o
+                0x0800442e                HardFault_Handler
  .text.MemManage_Handler
-                0x08004440        0x2 src/stm32f30x_it.o
-                0x08004440                MemManage_Handler
+                0x08004430        0x2 src/stm32f30x_it.o
+                0x08004430                MemManage_Handler
  .text.BusFault_Handler
-                0x08004442        0x2 src/stm32f30x_it.o
-                0x08004442                BusFault_Handler
+                0x08004432        0x2 src/stm32f30x_it.o
+                0x08004432                BusFault_Handler
  .text.UsageFault_Handler
-                0x08004444        0x2 src/stm32f30x_it.o
-                0x08004444                UsageFault_Handler
+                0x08004434        0x2 src/stm32f30x_it.o
+                0x08004434                UsageFault_Handler
  .text.SVC_Handler
-                0x08004446        0x2 src/stm32f30x_it.o
-                0x08004446                SVC_Handler
+                0x08004436        0x2 src/stm32f30x_it.o
+                0x08004436                SVC_Handler
  .text.DebugMon_Handler
-                0x08004448        0x2 src/stm32f30x_it.o
-                0x08004448                DebugMon_Handler
+                0x08004438        0x2 src/stm32f30x_it.o
+                0x08004438                DebugMon_Handler
  .text.PendSV_Handler
-                0x0800444a        0x2 src/stm32f30x_it.o
-                0x0800444a                PendSV_Handler
+                0x0800443a        0x2 src/stm32f30x_it.o
+                0x0800443a                PendSV_Handler
  .text.SysTick_Handler
-                0x0800444c       0x20 src/stm32f30x_it.o
-                0x0800444c                SysTick_Handler
+                0x0800443c       0x20 src/stm32f30x_it.o
+                0x0800443c                SysTick_Handler
  .text.EXTI0_IRQHandler
-                0x0800446c       0x78 src/stm32f30x_it.o
-                0x0800446c                EXTI0_IRQHandler
+                0x0800445c       0x78 src/stm32f30x_it.o
+                0x0800445c                EXTI0_IRQHandler
  .text.USB_LP_CAN1_RX0_IRQHandler
-                0x080044e4        0x4 src/stm32f30x_it.o
-                0x080044e4                USB_LP_CAN1_RX0_IRQHandler
+                0x080044d4        0x4 src/stm32f30x_it.o
+                0x080044d4                USB_LP_CAN1_RX0_IRQHandler
  .text.USBWakeUp_IRQHandler
-                0x080044e8       0x12 src/stm32f30x_it.o
-                0x080044e8                USBWakeUp_IRQHandler
- *fill*         0x080044fa        0x2 00
+                0x080044d8       0x12 src/stm32f30x_it.o
+                0x080044d8                USBWakeUp_IRQHandler
+ *fill*         0x080044ea        0x2 00
  .text.SystemInit
-                0x080044fc       0xfc src/system_stm32f30x.o
-                0x080044fc                SystemInit
+                0x080044ec       0xfc src/system_stm32f30x.o
+                0x080044ec                SystemInit
  .text.EP1_IN_Callback
-                0x080045f8        0xc src/usb_endp.o
-                0x080045f8                EP1_IN_Callback
+                0x080045e8        0xc src/usb_endp.o
+                0x080045e8                EP1_IN_Callback
  .text.USB_Istr
-                0x08004604       0xf0 src/usb_istr.o
-                0x08004604                USB_Istr
+                0x080045f4       0xf0 src/usb_istr.o
+                0x080045f4                USB_Istr
  .text.Joystick_SetConfiguration
-                0x080046f4       0x18 src/usb_prop.o
-                0x080046f4                Joystick_SetConfiguration
+                0x080046e4       0x18 src/usb_prop.o
+                0x080046e4                Joystick_SetConfiguration
  .text.Joystick_SetDeviceAddress
-                0x0800470c        0xc src/usb_prop.o
-                0x0800470c                Joystick_SetDeviceAddress
+                0x080046fc        0xc src/usb_prop.o
+                0x080046fc                Joystick_SetDeviceAddress
  .text.Joystick_Status_In
-                0x08004718        0x2 src/usb_prop.o
-                0x08004718                Joystick_Status_In
+                0x08004708        0x2 src/usb_prop.o
+                0x08004708                Joystick_Status_In
  .text.Joystick_Status_Out
-                0x0800471a        0x2 src/usb_prop.o
-                0x0800471a                Joystick_Status_Out
+                0x0800470a        0x2 src/usb_prop.o
+                0x0800470a                Joystick_Status_Out
  .text.Joystick_Data_Setup
-                0x0800471c       0x6c src/usb_prop.o
-                0x0800471c                Joystick_Data_Setup
+                0x0800470c       0x6c src/usb_prop.o
+                0x0800470c                Joystick_Data_Setup
  .text.Joystick_Get_Interface_Setting
-                0x08004788       0x10 src/usb_prop.o
-                0x08004788                Joystick_Get_Interface_Setting
+                0x08004778       0x10 src/usb_prop.o
+                0x08004778                Joystick_Get_Interface_Setting
  .text.Joystick_GetProtocolValue
-                0x08004798       0x18 src/usb_prop.o
-                0x08004798                Joystick_GetProtocolValue
+                0x08004788       0x18 src/usb_prop.o
+                0x08004788                Joystick_GetProtocolValue
  .text.Joystick_GetHIDDescriptor
-                0x080047b0        0xc src/usb_prop.o
-                0x080047b0                Joystick_GetHIDDescriptor
+                0x080047a0        0xc src/usb_prop.o
+                0x080047a0                Joystick_GetHIDDescriptor
  .text.Joystick_GetReportDescriptor
-                0x080047bc        0xc src/usb_prop.o
-                0x080047bc                Joystick_GetReportDescriptor
+                0x080047ac        0xc src/usb_prop.o
+                0x080047ac                Joystick_GetReportDescriptor
  .text.Joystick_GetStringDescriptor
-                0x080047c8       0x20 src/usb_prop.o
-                0x080047c8                Joystick_GetStringDescriptor
+                0x080047b8       0x20 src/usb_prop.o
+                0x080047b8                Joystick_GetStringDescriptor
  .text.Joystick_GetConfigDescriptor
-                0x080047e8        0xc src/usb_prop.o
-                0x080047e8                Joystick_GetConfigDescriptor
+                0x080047d8        0xc src/usb_prop.o
+                0x080047d8                Joystick_GetConfigDescriptor
  .text.Joystick_GetDeviceDescriptor
-                0x080047f4        0xc src/usb_prop.o
-                0x080047f4                Joystick_GetDeviceDescriptor
+                0x080047e4        0xc src/usb_prop.o
+                0x080047e4                Joystick_GetDeviceDescriptor
  .text.Joystick_Reset
-                0x08004800       0x9c src/usb_prop.o
-                0x08004800                Joystick_Reset
+                0x080047f0       0x9c src/usb_prop.o
+                0x080047f0                Joystick_Reset
  .text.Joystick_init
-                0x0800489c       0x24 src/usb_prop.o
-                0x0800489c                Joystick_init
+                0x0800488c       0x24 src/usb_prop.o
+                0x0800488c                Joystick_init
  .text.Joystick_SetProtocol
-                0x080048c0       0x18 src/usb_prop.o
-                0x080048c0                Joystick_SetProtocol
+                0x080048b0       0x18 src/usb_prop.o
+                0x080048b0                Joystick_SetProtocol
  .text.Joystick_NoData_Setup
-                0x080048d8       0x20 src/usb_prop.o
-                0x080048d8                Joystick_NoData_Setup
- .text.PowerOn  0x080048f8       0x30 src/usb_pwr.o
-                0x080048f8                PowerOn
- .text.Suspend  0x08004928       0x20 src/usb_pwr.o
-                0x08004928                Suspend
+                0x080048c8       0x20 src/usb_prop.o
+                0x080048c8                Joystick_NoData_Setup
+ .text.PowerOn  0x080048e8       0x30 src/usb_pwr.o
+                0x080048e8                PowerOn
+ .text.Suspend  0x08004918       0x20 src/usb_pwr.o
+                0x08004918                Suspend
  .text.Resume_Init
-                0x08004948       0x20 src/usb_pwr.o
-                0x08004948                Resume_Init
- .text.Resume   0x08004968       0x8c src/usb_pwr.o
-                0x08004968                Resume
+                0x08004938       0x20 src/usb_pwr.o
+                0x08004938                Resume_Init
+ .text.Resume   0x08004958       0x8c src/usb_pwr.o
+                0x08004958                Resume
  .text.STM_EVAL_LEDInit
-                0x080049f4       0x48 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x080049f4                STM_EVAL_LEDInit
+                0x080049e4       0x48 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x080049e4                STM_EVAL_LEDInit
  .text.STM_EVAL_LEDOn
-                0x08004a3c       0x18 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x08004a3c                STM_EVAL_LEDOn
+                0x08004a2c       0x18 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x08004a2c                STM_EVAL_LEDOn
  .text.STM_EVAL_LEDOff
-                0x08004a54       0x18 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x08004a54                STM_EVAL_LEDOff
+                0x08004a44       0x18 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x08004a44                STM_EVAL_LEDOff
  .text.STM_EVAL_LEDToggle
-                0x08004a6c       0x20 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x08004a6c                STM_EVAL_LEDToggle
+                0x08004a5c       0x20 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x08004a5c                STM_EVAL_LEDToggle
  .text.STM_EVAL_PBInit
-                0x08004a8c       0xa8 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x08004a8c                STM_EVAL_PBInit
+                0x08004a7c       0xa8 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x08004a7c                STM_EVAL_PBInit
  .text.STM_EVAL_PBGetState
-                0x08004b34       0x20 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x08004b34                STM_EVAL_PBGetState
+                0x08004b24       0x20 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x08004b24                STM_EVAL_PBGetState
  .text.L3GD20_SendByte
-                0x08004b54       0x60 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
+                0x08004b44       0x60 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
  .text.L3GD20_Write
-                0x08004bb4       0x40 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
-                0x08004bb4                L3GD20_Write
+                0x08004ba4       0x40 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
+                0x08004ba4                L3GD20_Write
  .text.L3GD20_Init
-                0x08004bf4      0x1b8 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
-                0x08004bf4                L3GD20_Init
+                0x08004be4      0x1b8 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
+                0x08004be4                L3GD20_Init
  .text.L3GD20_Read
-                0x08004dac       0x44 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
-                0x08004dac                L3GD20_Read
+                0x08004d9c       0x44 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
+                0x08004d9c                L3GD20_Read
  .text.L3GD20_FilterCmd
-                0x08004df0       0x2c util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
-                0x08004df0                L3GD20_FilterCmd
+                0x08004de0       0x2c util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
+                0x08004de0                L3GD20_FilterCmd
  .text.L3GD20_FilterConfig
-                0x08004e1c       0x38 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
-                0x08004e1c                L3GD20_FilterConfig
+                0x08004e0c       0x38 util/STM32F3_Discovery/stm32f3_discovery_l3gd20.o
+                0x08004e0c                L3GD20_FilterConfig
  .text.LSM303DLHC_LowLevel_Init
-                0x08004e54      0x120 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
+                0x08004e44      0x120 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
  .text.LSM303DLHC_Write
-                0x08004f74       0xf0 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
-                0x08004f74                LSM303DLHC_Write
+                0x08004f64       0xf0 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
+                0x08004f64                LSM303DLHC_Write
  .text.LSM303DLHC_MagInit
-                0x08005064       0x6c util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
-                0x08005064                LSM303DLHC_MagInit
+                0x08005054       0x6c util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
+                0x08005054                LSM303DLHC_MagInit
  .text.LSM303DLHC_AccInit
-                0x080050d0       0x68 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
-                0x080050d0                LSM303DLHC_AccInit
+                0x080050c0       0x68 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
+                0x080050c0                LSM303DLHC_AccInit
  .text.LSM303DLHC_Read
-                0x08005138      0x108 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
-                0x08005138                LSM303DLHC_Read
+                0x08005128      0x108 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
+                0x08005128                LSM303DLHC_Read
  .text.LSM303DLHC_AccFilterConfig
-                0x08005240       0x46 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
-                0x08005240                LSM303DLHC_AccFilterConfig
+                0x08005230       0x46 util/STM32F3_Discovery/stm32f3_discovery_lsm303dlhc.o
+                0x08005230                LSM303DLHC_AccFilterConfig
  *(.rodata)
- *fill*         0x08005286        0x2 00
- .rodata        0x08005288       0x20 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-sf_atan.o)
+ *fill*         0x08005276        0x2 00
+ .rodata        0x08005278       0x20 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-sf_atan.o)
  *(.rodata*)
  .rodata.CSWTCH.76
-                0x080052a8       0x84 src/main.o
+                0x08005298       0x84 src/main.o
  .rodata.Joystick_ConfigDescriptor
-                0x0800532c       0x22 src/usb_desc.o
-                0x0800532c                Joystick_ConfigDescriptor
+                0x0800531c       0x22 src/usb_desc.o
+                0x0800531c                Joystick_ConfigDescriptor
  .rodata.Joystick_StringVendor
-                0x0800534e       0x26 src/usb_desc.o
-                0x0800534e                Joystick_StringVendor
+                0x0800533e       0x26 src/usb_desc.o
+                0x0800533e                Joystick_StringVendor
  .rodata.Joystick_DeviceDescriptor
-                0x08005374       0x12 src/usb_desc.o
-                0x08005374                Joystick_DeviceDescriptor
+                0x08005364       0x12 src/usb_desc.o
+                0x08005364                Joystick_DeviceDescriptor
  .rodata.Joystick_StringProduct
-                0x08005386       0x1e src/usb_desc.o
-                0x08005386                Joystick_StringProduct
+                0x08005376       0x1e src/usb_desc.o
+                0x08005376                Joystick_StringProduct
  .rodata.Joystick_ReportDescriptor
-                0x080053a4       0x4a src/usb_desc.o
-                0x080053a4                Joystick_ReportDescriptor
+                0x08005394       0x4a src/usb_desc.o
+                0x08005394                Joystick_ReportDescriptor
  .rodata.Joystick_StringLangID
-                0x080053ee        0x4 src/usb_desc.o
-                0x080053ee                Joystick_StringLangID
- *fill*         0x080053f2        0x2 00
+                0x080053de        0x4 src/usb_desc.o
+                0x080053de                Joystick_StringLangID
+ *fill*         0x080053e2        0x2 00
  .rodata.BUTTON_CLK
-                0x080053f4        0x4 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x080053f4                BUTTON_CLK
+                0x080053e4        0x4 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x080053e4                BUTTON_CLK
  .rodata.BUTTON_PIN
-                0x080053f8        0x2 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x080053f8                BUTTON_PIN
- *fill*         0x080053fa        0x2 00
+                0x080053e8        0x2 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x080053e8                BUTTON_PIN
+ *fill*         0x080053ea        0x2 00
  .rodata.GPIO_CLK
-                0x080053fc       0x20 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x080053fc                GPIO_CLK
+                0x080053ec       0x20 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x080053ec                GPIO_CLK
  .rodata.GPIO_PIN
-                0x0800541c       0x10 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x0800541c                GPIO_PIN
+                0x0800540c       0x10 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x0800540c                GPIO_PIN
  .rodata.BUTTON_PORT_SOURCE
-                0x0800542c        0x1 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x0800542c                BUTTON_PORT_SOURCE
+                0x0800541c        0x1 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x0800541c                BUTTON_PORT_SOURCE
  .rodata.BUTTON_PIN_SOURCE
-                0x0800542d        0x1 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x0800542d                BUTTON_PIN_SOURCE
+                0x0800541d        0x1 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x0800541d                BUTTON_PIN_SOURCE
  .rodata.BUTTON_IRQn
-                0x0800542e        0x1 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x0800542e                BUTTON_IRQn
- *fill*         0x0800542f        0x1 00
+                0x0800541e        0x1 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x0800541e                BUTTON_IRQn
+ *fill*         0x0800541f        0x1 00
  .rodata.BUTTON_EXTI_LINE
-                0x08005430        0x2 util/STM32F3_Discovery/stm32f3_discovery.o
-                0x08005430                BUTTON_EXTI_LINE
- *fill*         0x08005432        0x2 00
+                0x08005420        0x2 util/STM32F3_Discovery/stm32f3_discovery.o
+                0x08005420                BUTTON_EXTI_LINE
+ *fill*         0x08005422        0x2 00
  .rodata.str1.4
-                0x08005434        0x5 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-w_acos.o)
+                0x08005424        0x5 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-w_acos.o)
                                   0xc (size before relaxing)
- *fill*         0x08005439        0x3 00
+ *fill*         0x08005429        0x3 00
  .rodata.str1.4
-                0x0800543c        0x5 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-w_sqrt.o)
+                0x0800542c        0x5 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2/libm.a(lib_a-w_sqrt.o)
                                   0x8 (size before relaxing)
- *fill*         0x08005441        0x3 00
+ *fill*         0x08005431        0x3 00
  .rodata.str1.4
-                0x08005444        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+                0x08005434        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.glue_7t)
  .glue_7t       0x00000000        0x0 linker stubs
  *(.eh_frame)
  *(.init)
- .init          0x08005448        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crti.o
-                0x08005448                _init
- .init          0x0800544c        0x8 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtn.o
+ .init          0x08005438        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crti.o
+                0x08005438                _init
+ .init          0x0800543c        0x8 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtn.o
  *(.fini)
- .fini          0x08005454        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crti.o
-                0x08005454                _fini
- .fini          0x08005458        0x8 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtn.o
-                0x08005460                . = ALIGN (0x4)
-                0x08005460                _etext = .
+ .fini          0x08005444        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crti.o
+                0x08005444                _fini
+ .fini          0x08005448        0x8 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtn.o
+                0x08005450                . = ALIGN (0x4)
+                0x08005450                _etext = .
 
-.vfp11_veneer   0x08005460        0x0
+.vfp11_veneer   0x08005450        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08005460        0x0
+.v4_bx          0x08005450        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x08005460        0x0
-                0x08005460                __exidx_start = .
+.ARM            0x08005450        0x0
+                0x08005450                __exidx_start = .
  *(.ARM.exidx*)
-                0x08005460                __exidx_end = .
+                0x08005450                __exidx_end = .
 
-.preinit_array  0x08005460        0x0
-                0x08005460                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x08005450        0x0
+                0x08005450                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x08005460                PROVIDE (__preinit_array_end, .)
+                0x08005450                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x08005460        0x4
-                0x08005460                PROVIDE (__init_array_start, .)
+.init_array     0x08005450        0x4
+                0x08005450                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
- .init_array    0x08005460        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtbegin.o
-                0x08005464                PROVIDE (__init_array_end, .)
+ .init_array    0x08005450        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtbegin.o
+                0x08005454                PROVIDE (__init_array_end, .)
 
-.fini_array     0x08005464        0x4
-                0x08005464                PROVIDE (__fini_array_start, .)
+.fini_array     0x08005454        0x4
+                0x08005454                PROVIDE (__fini_array_start, .)
  *(SORT(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08005464        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtbegin.o
-                0x08005468                PROVIDE (__fini_array_end, .)
-                0x08005468                _sidata = LOADADDR (.data)
+ .fini_array    0x08005454        0x4 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtbegin.o
+                0x08005458                PROVIDE (__fini_array_end, .)
+                0x08005458                _sidata = LOADADDR (.data)
 
-.data           0x20000000      0x248 load address 0x08005468
+.data           0x20000000      0x248 load address 0x08005458
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
@@ -2332,12 +2332,12 @@ LOAD /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/
                 0x20000244                LSM303DLHC_Timeout
                 0x20000248                . = ALIGN (0x4)
                 0x20000248                _edata = .
-                0x080056b0                _siccmram = LOADADDR (.ccmram)
+                0x080056a0                _siccmram = LOADADDR (.ccmram)
 
-.jcr            0x20000248        0x0 load address 0x080056b0
+.jcr            0x20000248        0x0 load address 0x080056a0
  .jcr           0x20000248        0x0 /home/laurence/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-eabi/4.5.2/thumb2/crtbegin.o
 
-.ccmram         0x10000000        0x0 load address 0x080056b0
+.ccmram         0x10000000        0x0 load address 0x080056a0
                 0x10000000                . = ALIGN (0x4)
                 0x10000000                _sccmram = .
  *(.ccmram)
