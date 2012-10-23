@@ -1,0 +1,7 @@
+Firmware for the F3Discovery.
+
+Impliments a USB mouse using magno and accel.
+
+USER button needs to be clicked twice to start demo.
+
+USER button functions as mouse button in mouse mode.
