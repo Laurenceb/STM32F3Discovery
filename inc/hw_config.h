@@ -38,7 +38,7 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported define -----------------------------------------------------------*/
-#define CURSOR_STEP     10
+#define CURSOR_STEP     0.7f
 
 #define DOWN            1
 #define LEFT            2

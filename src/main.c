@@ -248,34 +248,35 @@ int main(void)
       fNormAcc = sqrt((AccBuffer[0]*AccBuffer[0])+(AccBuffer[1]*AccBuffer[1])+(AccBuffer[2]*AccBuffer[2]));
       
       fSinRoll = -AccBuffer[1]/fNormAcc;
-      fCosRoll = sqrt(1.0-(fSinRoll * fSinRoll));
+      fCosRoll = sqrtf(1.0-(fSinRoll * fSinRoll));
       fSinPitch = AccBuffer[0]/fNormAcc;
-      fCosPitch = sqrt(1.0-(fSinPitch * fSinPitch));
+      fCosPitch = sqrtf(1.0-(fSinPitch * fSinPitch));
 
-      Dot_Norm = ((AccBuffer[0]*MagBuffer[0])+(AccBuffer[1]*MagBuffer[1])+(AccBuffer[2]*MagBuffer[2]))/(fNormAcc*fNormAcc);
+      //Dot_Norm = ((AccBuffer[0]*MagBuffer[0])+(AccBuffer[1]*MagBuffer[1])+(AccBuffer[2]*MagBuffer[2]))/(fNormAcc*fNormAcc);
+      Dot_Norm = MagBuffer[2]/AccBuffer[2];
      if ( fSinRoll >0)
      {
        if (fCosRoll>0)
        {
-         RollAng = acos(fCosRoll)*180/PI;
+         RollAng = acosf(fCosRoll)*180/PI;
        }
        else
        {
-         RollAng = acos(fCosRoll)*180/PI + 180;
+         RollAng = acosf(fCosRoll)*180/PI + 180;
        }
      }
      else
      {
        if (fCosRoll>0)
        {
-         RollAng = acos(fCosRoll)*180/PI + 360;
+         RollAng = acosf(fCosRoll)*180/PI + 360;
        }
        else
        {
-         RollAng = acos(fCosRoll)*180/PI + 180;
+         RollAng = acosf(fCosRoll)*180/PI + 180;
        }
      }
-     
+     /*
       if ( fSinPitch >0)
      {
        if (fCosPitch>0)
@@ -297,18 +298,18 @@ int main(void)
        {
           PitchAng = acos(fCosPitch)*180/PI + 180;
        }
-     }
+     }*/
 
       if (RollAng >=360)
       {
         RollAng = RollAng - 360;
       }
-      
+      /*
       if (PitchAng >=360)
       {
         PitchAng = PitchAng - 360;
-      }
-      
+      }*/
+      PitchAng = atan2f(AccBuffer[0], AccBuffer[2])*180.0/PI;
       //fTiltedX = MagBuffer[0]*fCosPitch+MagBuffer[2]*fSinPitch;
       //fTiltedY = MagBuffer[0]*fSinRoll*fSinPitch+MagBuffer[1]*fCosRoll-MagBuffer[1]*fSinRoll*fCosPitch;
       fTiltedX = MagBuffer[0] - AccBuffer[0] * (Dot_Norm);
@@ -322,7 +323,7 @@ int main(void)
       }
 
       /* Get position */
-      Mouse_Buffer = USBD_HID_GetPos( HeadingValue-128, PitchAng-128);
+      Mouse_Buffer = USBD_HID_GetPos( HeadingValue, PitchAng);
       /* Update the cursor position */
       if((Mouse_Buffer[1] != 0) ||(Mouse_Buffer[2] != 0))
       {
@@ -471,55 +472,48 @@ void Demo_USB (void)
 static uint8_t *USBD_HID_GetPos (float Heading, float Pitch)
 {
   static uint8_t HID_Buffer[4] = {0};
-  
-  static float Start_Heading=-400.0, Start_Pitch=-400.0;
+  static uint32_t iter=0;
+  static float Start_Heading=0, Start_Pitch=0;
 
-  if(Start_Heading == -400.0)  
+  if(!iter++) {
     Start_Heading = Heading;
-  if(Start_Pitch == -400.0)  
     Start_Pitch = Pitch;
+  }
   float Delta_Heading = Heading - Start_Heading;
-  if(Delta_Heading > 128)
-    Delta_Heading -= 128;
-  if(Delta_Heading < -128)
-    Delta_Heading += 128;
-  float Delta_Pitch = Pitch - Start_Pitch;
-  if(Delta_Pitch > 128)
-    Delta_Pitch -= 128;
-  if(Delta_Pitch < -128)
-    Delta_Pitch += 128;
+  if(Delta_Heading > 180)
+    Delta_Heading -= 360;
+  if(Delta_Heading < -180)
+    Delta_Heading += 360;
+  volatile float Delta_Pitch = Pitch - Start_Pitch;
+  if(Delta_Pitch > 180)
+    Delta_Pitch -= 360;
+  if(Delta_Pitch < -180)
+    Delta_Pitch += 360;
 
   HID_Buffer[1] = 0;
   HID_Buffer[2] = 0;
-  /* LEFT Direction */
-  if(((int8_t)Delta_Heading) > 10)
+  /* RIGHT Direction */
+  if((Delta_Heading) > 10)
   {
-    HID_Buffer[1] += (Delta_Heading-10)/CURSOR_STEP;
-    //Old_Heading -= 5;
+    HID_Buffer[1] = (uint8_t)((Delta_Heading-10.0)/CURSOR_STEP);
   }
-  /* RIGHT Direction */ 
-  if(((int8_t)Delta_Heading) < -10)
+  /* LEFT Direction */ 
+  if((Delta_Heading) < -10)
   {
-   HID_Buffer[1] += (Delta_Heading+10)/CURSOR_STEP;
-   //Old_Heading += 5;
+   HID_Buffer[1] = (uint8_t)(255.0+(Delta_Heading+11.0)/CURSOR_STEP);
   } 
- /* if(Old_Heading>128)
-    Old_Heading-=128;
-  if(Old_Heading<-128)
-    Old_Heading+=128;*/
-
   /* UP Direction */
-  if(((int8_t)Delta_Pitch) < -10)
+  if((Delta_Pitch) < -10)
   {
-    HID_Buffer[2] -= (Delta_Pitch+10)/CURSOR_STEP;
+    HID_Buffer[2] = (uint8_t)(255.0+(Delta_Pitch+11.0)/CURSOR_STEP);
   }
   /* DOWN Direction */ 
-  if(((int8_t)Delta_Pitch) > 10)
+  if((Delta_Pitch) > 10)
   {
-    HID_Buffer[2] -= (Delta_Pitch-10)/CURSOR_STEP;
+    HID_Buffer[2] = (uint8_t)((Delta_Pitch-10.0)/CURSOR_STEP);
   } 
   
-  return HID_Buffer;
+  return (uint8_t*)HID_Buffer;
 }
 
 /**
