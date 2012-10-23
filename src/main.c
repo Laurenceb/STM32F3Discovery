@@ -59,12 +59,13 @@ uint8_t Xval, Yval = 0x00;
 __IO uint8_t DataReady = 0;
 __IO uint8_t PrevXferComplete = 1;
 __IO uint32_t USBConnectTimeOut = 100;
+__IO uint8_t Mouse_Button;
 uint8_t *Mouse_Buffer;
 
 float fNormAcc,fSinRoll,fCosRoll,fSinPitch,fCosPitch = 0.0f, RollAng = 0.0f, PitchAng = 0.0f;
 float fTiltedX,fTiltedY = 0.0f, Dot_Norm;
 /* Private function prototypes -----------------------------------------------*/
-static uint8_t *USBD_HID_GetPos (float Heading, float Pitch);
+static uint8_t *USBD_HID_GetPos (float Heading, float Pitch, uint8_t Buttons);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -231,10 +232,10 @@ int main(void)
     Demo_CompassConfig();
     
     /* Waiting User Button is pressed */
-    while (UserButtonPressed == 0x02)
+    while (/*UserButtonPressed == 0x02*/1)
     {
       /* Wait for data ready */
-      while(DataReady !=0x05)
+      while(DataReady !=0x04)
       {}
       DataReady = 0x00;
       
@@ -252,7 +253,6 @@ int main(void)
       fSinPitch = AccBuffer[0]/fNormAcc;
       fCosPitch = sqrtf(1.0-(fSinPitch * fSinPitch));
 
-      //Dot_Norm = ((AccBuffer[0]*MagBuffer[0])+(AccBuffer[1]*MagBuffer[1])+(AccBuffer[2]*MagBuffer[2]))/(fNormAcc*fNormAcc);
       Dot_Norm = MagBuffer[2]/AccBuffer[2];
      if ( fSinRoll >0)
      {
@@ -276,42 +276,14 @@ int main(void)
          RollAng = acosf(fCosRoll)*180/PI + 180;
        }
      }
-     /*
-      if ( fSinPitch >0)
-     {
-       if (fCosPitch>0)
-       {
-            PitchAng = acos(fCosPitch)*180/PI;
-       }
-       else
-       {
-          PitchAng = acos(fCosPitch)*180/PI + 180;
-       }
-     }
-     else
-     {
-       if (fCosPitch>0)
-       {
-            PitchAng = acos(fCosPitch)*180/PI + 360;
-       }
-       else
-       {
-          PitchAng = acos(fCosPitch)*180/PI + 180;
-       }
-     }*/
 
       if (RollAng >=360)
       {
         RollAng = RollAng - 360;
       }
-      /*
-      if (PitchAng >=360)
-      {
-        PitchAng = PitchAng - 360;
-      }*/
+ 
       PitchAng = atan2f(AccBuffer[0], AccBuffer[2])*180.0/PI;
-      //fTiltedX = MagBuffer[0]*fCosPitch+MagBuffer[2]*fSinPitch;
-      //fTiltedY = MagBuffer[0]*fSinRoll*fSinPitch+MagBuffer[1]*fCosRoll-MagBuffer[1]*fSinRoll*fCosPitch;
+
       fTiltedX = MagBuffer[0] - AccBuffer[0] * (Dot_Norm);
       fTiltedY = MagBuffer[1] - AccBuffer[1] * (Dot_Norm);
       
@@ -323,7 +295,9 @@ int main(void)
       }
 
       /* Get position */
-      Mouse_Buffer = USBD_HID_GetPos( HeadingValue, PitchAng);
+      Mouse_Buffer = USBD_HID_GetPos( HeadingValue, PitchAng, Mouse_Button);
+      if(STM_EVAL_PBGetState(BUTTON_USER) == RESET)
+          Mouse_Button = 0x00;
       /* Update the cursor position */
       if((Mouse_Buffer[1] != 0) ||(Mouse_Buffer[2] != 0))
       {
@@ -439,8 +413,8 @@ int main(void)
         STM_EVAL_LEDToggle(LED3);
         STM_EVAL_LEDToggle(LED4);
         STM_EVAL_LEDToggle(LED5);
-        /* Delay 50ms */
-        Delay(5);
+        /* Delay 20ms */
+        Delay(2);
       }
     }
   }
@@ -469,7 +443,7 @@ void Demo_USB (void)
   * @param  None
   * @retval Pointer to report
   */
-static uint8_t *USBD_HID_GetPos (float Heading, float Pitch)
+static uint8_t *USBD_HID_GetPos (float Heading, float Pitch, uint8_t Buttons)
 {
   static uint8_t HID_Buffer[4] = {0};
   static uint32_t iter=0;
@@ -489,7 +463,7 @@ static uint8_t *USBD_HID_GetPos (float Heading, float Pitch)
     Delta_Pitch -= 360;
   if(Delta_Pitch < -180)
     Delta_Pitch += 360;
-
+  HID_Buffer[0] = Buttons;
   HID_Buffer[1] = 0;
   HID_Buffer[2] = 0;
   /* RIGHT Direction */
@@ -503,14 +477,14 @@ static uint8_t *USBD_HID_GetPos (float Heading, float Pitch)
    HID_Buffer[1] = (uint8_t)(255.0+(Delta_Heading+11.0)/CURSOR_STEP);
   } 
   /* UP Direction */
-  if((Delta_Pitch) < -10)
+  if((Delta_Pitch) < -5)
   {
-    HID_Buffer[2] = (uint8_t)(255.0+(Delta_Pitch+11.0)/CURSOR_STEP);
+    HID_Buffer[2] = (uint8_t)(255.0+(Delta_Pitch+6.0)/CURSOR_STEP);
   }
   /* DOWN Direction */ 
-  if((Delta_Pitch) > 10)
+  if((Delta_Pitch) > 5)
   {
-    HID_Buffer[2] = (uint8_t)((Delta_Pitch-10.0)/CURSOR_STEP);
+    HID_Buffer[2] = (uint8_t)((Delta_Pitch-5.0)/CURSOR_STEP);
   } 
   
   return (uint8_t*)HID_Buffer;

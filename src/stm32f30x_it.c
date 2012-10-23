@@ -43,6 +43,7 @@
 extern __IO uint32_t UserButtonPressed;
 extern __IO uint8_t DataReady;
 extern __IO uint32_t USBConnectTimeOut;
+extern __IO uint8_t Mouse_Button;
 __IO uint32_t i =0;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -168,19 +169,20 @@ void EXTI0_IRQHandler(void)
   if ((EXTI_GetITStatus(USER_BUTTON_EXTI_LINE) == SET)&&(STM_EVAL_PBGetState(BUTTON_USER) != RESET))
   {
     /* Delay */
-    for(i=0; i<0x7FFFF; i++);
+    for(i=0; i<0x0FFFF; i++);
     
-    /* Wait for SEL button to be pressed  */
-    while(STM_EVAL_PBGetState(BUTTON_USER) != RESET); 
-    /* Delay */
-    for(i=0; i<0x7FFFF; i++);
-    UserButtonPressed++;
+    /* Check USER button is still pressed  */
+    if(STM_EVAL_PBGetState(BUTTON_USER) != RESET) {
+        
+        UserButtonPressed++;
     
-    if (UserButtonPressed > 0x2)
-    {
-      UserButtonPressed = 0x0;
+        if (UserButtonPressed > 0x2)
+        {
+           UserButtonPressed = 0x0;
+        }
+
+        Mouse_Button = 0x01;
     }
-    
     /* Clear the EXTI line pending bit */
     EXTI_ClearITPendingBit(USER_BUTTON_EXTI_LINE);
   }

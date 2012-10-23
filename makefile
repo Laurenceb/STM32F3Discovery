@@ -44,7 +44,7 @@ ifdef DEBUG
  TARGET_OPTS = -O3 -g3
  DEBUG_MACRO = -DDEBUG
 else
- TARGET_OPTS = $(OPTIMISE) -finline -finline-functions-called-once\
+ TARGET_OPTS = $(OPTIMISE) -finline -finline-functions-called-once -mfloat-abi=softfp -mfpu=fpv4-sp-d16\
   -funroll-loops -fno-common -fpromote-loop-indices -fno-rtti -fno-exceptions -ffunction-sections -fdata-sections
 endif
 
