@@ -66,6 +66,7 @@ float fNormAcc,fSinRoll,fCosRoll,fSinPitch,fCosPitch = 0.0f, RollAng = 0.0f, Pit
 float fTiltedX,fTiltedY = 0.0f, Dot_Norm;
 /* Private function prototypes -----------------------------------------------*/
 static uint8_t *USBD_HID_GetPos (float Heading, float Pitch, uint8_t Buttons);
+void   OpAmp_Characterisation_Setup(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -97,7 +98,10 @@ int main(void)
   
   /* Reset UserButton_Pressed variable */
   UserButtonPressed = 0x00; 
-   
+  
+  /* Opamp test */
+  OpAmp_Characterisation_Setup();
+
   /* Infinite loop */
   while (1)
   {   
@@ -787,6 +791,40 @@ uint32_t L3GD20_TIMEOUT_UserCallback(void)
 {
   return 0;
 }
+
+void OpAmp_Characterisation_Setup(void)
+{
+  OPAMP_InitTypeDef       OPAMP_InitStructure;
+  GPIO_InitTypeDef        GPIO_InitStructure;
+
+  /* PA5 is used as OPAMP1 non inverting input: it is already configured in
+     analog mode in DAC_Config() */
+
+  /* GPIOA Peripheral clock is already enabled in DAC_Config() */
+
+  /* Configure PA2/3 analog mode: Used as OPAMP1 output and inverting input */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_3;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  /* OPAMP Peripheral clock enable */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+
+  /* OPAMP1 config */
+  OPAMP_InitStructure.OPAMP_NonInvertingInput = OPAMP_NonInvertingInput_IO4;
+  OPAMP_InitStructure.OPAMP_InvertingInput =  OPAMP_InvertingInput_IO2;
+  OPAMP_Init(OPAMP_Selection_OPAMP1, &OPAMP_InitStructure);
+
+  /* Configure OPAMP1 in external feedback mode with noninverting input at VDDA/2 */
+  OPAMP_VrefConfig(OPAMP_Selection_OPAMP1, OPAMP_Vref_50VDDA);
+  OPAMP_VrefConnectNonInvertingInput(OPAMP_Selection_OPAMP1, ENABLE);
+
+  /* Enable OPAMP1 */
+  OPAMP_Cmd(OPAMP_Selection_OPAMP1, ENABLE);
+}
+
+
 
 #ifdef  USE_FULL_ASSERT
 
